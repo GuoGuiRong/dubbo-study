@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:dubbo="http://code.alibabatech.com/schema/dubbo"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+       http://www.springframework.org/schema/beans/spring-beans.xsd
+       http://code.alibabatech.com/schema/dubbo
+       http://code.alibabatech.com/schema/dubbo/dubbo.xsd">
+
+    <!--名称,用于依赖计算-->
+    <dubbo:application name="dubbo-consumer" owner="dubbo-consumer"/>
+
+    <!--定义zookeeper注册中心的地址和协议-->
+    <dubbo:registry protocol="zookeeper" address="192.168.213.1:2181" client="zkclient"/>
+
+    <!--定义Dubbo的协议名称和使用端口，dubbo协议缺省端口有为20880，如果配置为-1或者没有配置就表示自动分配一个没有占用的端口-->
+    <!-- 生成暴露的远程服务代理，可以和本地 bean 一样使用 testService -->
+    <dubbo:reference id="testService" interface="com.ggr.dubbo.remote.TestService"/>
+</beans>
